@@ -5,6 +5,22 @@
     <title></title>
 </head>
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
+    <script type="text/jsx">
+        var HelloWorld = React.createClass({
+            render: function() {
+                return <div>Hi</div>;
+            }
+        });
 
+        React.render(<HelloWorld />, document.body);
+
+
+        ReactDOM.render(
+                <h1>Hello, world!</h1>,
+                document.body
+        );
+    </script>
 </body>
 </html>
