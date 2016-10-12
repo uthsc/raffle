@@ -32,9 +32,33 @@ var ContestantList = React.createClass({
 
 var ChooseWinnerButton = React.createClass({
 
+	//todo: move contestant into winners
+	chooseWinner: function (data){
+		console.log('chooseWinner before: ');
+		console.log(data);
+
+		//brute force update data
+		data = {
+			winners: [
+				{id: 1, name: "Pete Winner"},
+				{id: 2, name: "Jordan Winner"},
+				{id: 4, name: "Jordan Contestant"}
+			],
+			contestants: [
+				{id: 3, name: "Pete Contestant"},
+			]
+		};
+
+		console.log('chooseWinner after: ');
+		console.log(data);
+		return this.props.updateContestants(data);
+
+	},
+
 	handleClick: function(){
-		this.props.test.data.contestants[0] = {id:12, name:"bob"}; //just testing (use setState()
-		console.log(this.props.test);
+		//this.props.test.data.contestants[0] = {id:12, name:"bob"}; //just testing (use setState()
+		//console.log(this.props.test);
+		this.chooseWinner(this.props.test);
 	},
 
 	render: function(){
@@ -48,6 +72,11 @@ var ChooseWinnerButton = React.createClass({
 
 var Raffle = React.createClass({
 
+	updateContestants: function(data) {
+		console.log('updateContestants: ');
+		console.log(data);
+		//todo: this.setState()
+	},
 
 	render: function() {
 		return (
@@ -55,7 +84,7 @@ var Raffle = React.createClass({
 				<h1>Raffle</h1>
 				<ContestantList contestants={this.props.data.contestants} />
 				<WinnerList winners={this.props.data.winners} />
-				<ChooseWinnerButton test={this.props}/>
+				<ChooseWinnerButton test={this.props.data} updateContestants={this.updateContestants}/>
 			</div>
 		);
 	}
@@ -63,7 +92,6 @@ var Raffle = React.createClass({
 
 var WinnerList = React.createClass({
 	render: function() {
-
 		var winnerNodes = this.props.winners.map(function(winner) {
 			return (
 				<Contestant name={winner.name} key={winner.id} />
